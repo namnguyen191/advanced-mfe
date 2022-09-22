@@ -1,12 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { App } from './App';
+import('./bootstrap').then(({ mount }) => {
+  const markettingDevRoot = document.getElementById('dev-marketting');
 
-const root = ReactDOM.createRoot(
-  document.getElementById('dev-marketting') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+  if (!markettingDevRoot) throw Error('cannot find element');
+
+  mount(markettingDevRoot);
+});
+
+export {};
