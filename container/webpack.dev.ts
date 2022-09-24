@@ -10,7 +10,7 @@ import 'webpack-dev-server';
 let devConfig: webpack.Configuration = {
   mode: 'development',
   devServer: {
-    port: 8081,
+    port: 8080,
     historyApiFallback: {
       index: 'index.html'
     }
@@ -20,10 +20,9 @@ let devConfig: webpack.Configuration = {
       template: './public/index.html'
     }),
     new webpack.container.ModuleFederationPlugin({
-      name: 'marketting',
-      filename: 'remoteEntry.js',
-      exposes: {
-        './MarkettingApp': './src/bootstrap'
+      name: 'container',
+      remotes: {
+        marketting: 'marketting@http://localhost:8081/remoteEntry.js'
       },
       shared: packageJson.dependencies
     })
