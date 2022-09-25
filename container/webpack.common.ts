@@ -1,4 +1,5 @@
 import * as webpack from 'webpack';
+import * as HTMLWebpackPlugin from 'html-webpack-plugin';
 
 // types for devServer
 import 'webpack-dev-server';
@@ -16,7 +17,12 @@ const commonConfig: webpack.Configuration = {
         use: ['babel-loader']
       }
     ]
-  }
+  },
+  plugins: [
+    new HTMLWebpackPlugin({
+      template: './public/index.html'
+    })
+  ]
 };
 
 export default commonConfig;

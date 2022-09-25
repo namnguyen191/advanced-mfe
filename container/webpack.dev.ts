@@ -1,6 +1,5 @@
 import { merge } from 'webpack-merge';
 import * as webpack from 'webpack';
-import * as HTMLWebpackPlugin from 'html-webpack-plugin';
 import commonConfig from './webpack.common';
 import * as packageJson from './package.json';
 
@@ -16,9 +15,6 @@ let devConfig: webpack.Configuration = {
     }
   },
   plugins: [
-    new HTMLWebpackPlugin({
-      template: './public/index.html'
-    }),
     new webpack.container.ModuleFederationPlugin({
       name: 'container',
       remotes: {
