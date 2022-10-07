@@ -1,11 +1,16 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import React from 'react';
 import { Landing } from './components/Landing';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  Route,
+  Routes,
+  unstable_HistoryRouter as Router
+} from 'react-router-dom';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { orange } from '@mui/material/colors';
 import { Pricing } from './components/Pricing';
+import { MemoryHistory, BrowserHistory } from 'history';
 
 export const muiCache = createCache({
   key: 'mui',
@@ -18,22 +23,32 @@ const theme = createTheme({
   }
 });
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Landing />
-  },
-  {
-    path: 'pricing',
-    element: <Pricing />
-  }
-]);
+// const router = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: <Landing />
+//   },
+//   {
+//     path: 'pricing',
+//     element: <Pricing />
+//   }
+// ]);
 
-export const App: React.FC = () => {
+export type AppProps = {
+  history: MemoryHistory | BrowserHistory;
+};
+
+export const App: React.FC<AppProps> = (props) => {
+  const { history } = props;
   return (
     <CacheProvider value={muiCache}>
       <ThemeProvider theme={theme}>
-        <RouterProvider router={router} />
+        <Router history={history}>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="pricing" element={<Pricing />} />
+          </Routes>
+        </Router>
       </ThemeProvider>
     </CacheProvider>
   );

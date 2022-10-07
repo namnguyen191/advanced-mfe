@@ -11,7 +11,8 @@ const domain = process.env.PRODUCTION_DOMAIN;
 let prodConfig: webpack.Configuration = {
   mode: 'production',
   output: {
-    filename: '[name].[contenthash].js'
+    filename: '[name].[contenthash].js',
+    publicPath: '/container/latest/'
   },
   plugins: [
     new webpack.container.ModuleFederationPlugin({
