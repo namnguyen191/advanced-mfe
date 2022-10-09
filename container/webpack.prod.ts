@@ -18,7 +18,8 @@ let prodConfig: webpack.Configuration = {
     new webpack.container.ModuleFederationPlugin({
       name: 'container',
       remotes: {
-        marketting: `marketting@${domain}/marketting/remoteEntry.js`
+        marketting: `marketting@${domain}/marketting/remoteEntry.js`,
+        auth: `auth@${domain}/auth/remoteEntry.js`
       },
       shared: packageJson.dependencies
     })

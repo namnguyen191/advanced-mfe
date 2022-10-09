@@ -2,8 +2,10 @@ import { CacheProvider } from '@emotion/react';
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Header } from './components/Header';
-import { MarkettingApp } from './components/MarkettingApp';
+// import { MarkettingApp } from './components/MarkettingApp';
 import createCache from '@emotion/cache';
+import { AuthApp } from './components/AuthApp';
+import { MarkettingApp } from './components/MarkettingApp';
 
 const router = createBrowserRouter([
   {
@@ -12,6 +14,7 @@ const router = createBrowserRouter([
       <>
         <Header />
         <MarkettingApp />
+        <AuthApp />
       </>
     )
   }

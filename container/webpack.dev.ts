@@ -8,17 +8,25 @@ import 'webpack-dev-server';
 
 let devConfig: webpack.Configuration = {
   mode: 'development',
+  output: {
+    publicPath: 'http://localhost:8080/'
+  },
   devServer: {
     port: 8080,
     historyApiFallback: {
       index: '/index.html'
     }
   },
+  optimization: {
+    runtimeChunk: false,
+    splitChunks: false
+  },
   plugins: [
     new webpack.container.ModuleFederationPlugin({
       name: 'container',
       remotes: {
-        marketting: 'marketting@http://localhost:8081/remoteEntry.js'
+        marketting: 'marketting@http://localhost:8081/remoteEntry.js',
+        authApp: 'authApp@http://localhost:8082/remoteEntry.js'
       },
       shared: packageJson.dependencies
     })

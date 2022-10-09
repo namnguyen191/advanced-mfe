@@ -8,6 +8,9 @@ import 'webpack-dev-server';
 
 let devConfig: webpack.Configuration = {
   mode: 'development',
+  output: {
+    publicPath: 'http://localhost:8081/'
+  },
   devServer: {
     port: 8081,
     historyApiFallback: {

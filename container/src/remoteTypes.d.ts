@@ -4,3 +4,7 @@ declare module 'marketting/MarkettingApp' {
     opts: { onNavigate: (update: import('history').Update) => void }
   ) => { onParentNavigate: (location: import('history').Location) => void };
 }
+
+declare module 'authApp/AuthApp' {
+  export const mount: any;
+}
