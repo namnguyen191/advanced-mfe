@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './App';
 import { CacheProvider } from '@emotion/react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import createCache from '@emotion/cache';
-import { AuthApp } from './components/AuthApp';
-import { MarkettingApp } from './components/MarkettingApp';
+
+const MarkettingApp = React.lazy(() => import('./components/MarkettingApp'));
+const AuthApp = React.lazy(() => import('./components/AuthApp'));
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,9 @@ export const mount = (el: Element): void => {
   root.render(
     <React.StrictMode>
       <CacheProvider value={muiCache}>
-        <RouterProvider router={router} />
+        <Suspense fallback={<div>Loading stuffs...</div>}>
+          <RouterProvider router={router} />
+        </Suspense>
       </CacheProvider>
     </React.StrictMode>
   );

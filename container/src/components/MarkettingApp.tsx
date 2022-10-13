@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Location } from 'history';
 
-export const MarkettingApp: React.FC = () => {
+const MarkettingApp: React.FC = () => {
   const ref = useRef(null);
   const currentLocation = useLocation();
   const navigate = useNavigate();
@@ -35,3 +35,5 @@ export const MarkettingApp: React.FC = () => {
 
   return <div ref={ref} />;
 };
+
+export default MarkettingApp;

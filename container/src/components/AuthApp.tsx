@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-export const AuthApp: React.FC = () => {
+const AuthApp: React.FC = () => {
   useEffect(() => {
     mount();
   }, []);
@@ -20,3 +20,5 @@ export const AuthApp: React.FC = () => {
     </>
   );
 };
+
+export default AuthApp;
